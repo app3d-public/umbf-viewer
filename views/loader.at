@@ -1,0 +1,23 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="utf-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1")
+    title UMBF Image Viewer
+    link(rel="stylesheet" href="style.css")
+  body
+    main.center
+      .stack
+        button.btn(type="button" id="openBtn")
+          svg.mini(viewBox="0 0 24 24" aria-hidden="false")
+            path(fill="currentColor" d="M5 20h14a1 1 0 0 0 1-1v-4h-2v3H6v-3H4v4a1 1 0 0 0 1 1Zm7-16-5 5h3v4h4v-4h3l-5-5Z")
+          | Open image…
+        input#fileInput(type="file" accept=".umbf,.umia" hidden)
+
+        #dropZone.drop Drag & drop image here or press 
+          span.kbd F8
+          |  to open
+        footer Tip: you can also paste from clipboard (Ctrl + V)
+
+    include includes/error.at
+    script(src="loader.js")

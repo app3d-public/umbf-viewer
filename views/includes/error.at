@@ -1,0 +1,11 @@
+#modalBackdrop.modal-backdrop(role="presentation" aria-hidden="true")
+  .modal(role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-describedby="modalMsg")
+    .icon-badge(aria-hidden="true")
+      svg(viewBox="0 0 24 24")
+        circle(cx="12" cy="12" r="10")
+        line(x1="8" y1="8" x2="16" y2="16")
+        line(x1="16" y1="8" x2="8" y2="16")
+    h2#modalTitle Error
+    .content#modalMsg There was an error processing your request.
+    .actions: button.btn.btn-primary#modalCloseBtn(type="button") Try again
+script(src="error.js")

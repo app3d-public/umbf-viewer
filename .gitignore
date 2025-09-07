@@ -31,4 +31,8 @@
 *.exe
 *.out
 *.app
+*.exe.*
 
+lib
+build
+cache
