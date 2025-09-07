@@ -34,28 +34,7 @@
       return;
     }
 
-    if (!res.ok) {
-      let msg = `Upload failed (HTTP ${res.status})`;
-      try {
-        const maybeJson = await res.clone().json();
-        if (maybeJson?.error) msg = maybeJson.error;
-      } catch {
-        try {
-          const txt = await res.text();
-          if (txt) msg = txt;
-        } catch { }
-      }
-      showError(msg);
-      return;
-    }
-
-    let json = null;
-    try {
-      json = await res.json();
-    } catch {
-      showError('Invalid server response');
-      return;
-    }
+    const json = await res.json();
 
     if (!json || json.success !== true) {
       showError(json?.error || 'Failed to open file');

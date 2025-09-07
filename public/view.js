@@ -120,16 +120,11 @@
   async function fetchInfo() {
     try {
       const r = await fetch('/api/image', { cache: 'no-store' });
-      if (!r.ok) {
-        let msg = `Failed to load metadata (HTTP ${r.status})`;
-        try {
-          const j = await r.clone().json();
-          if (j?.error) msg = j.error;
-        } catch { }
-        showError(msg);
+      const meta = await r.json();
+      if (!meta || meta.success === false) {
+        showError(meta?.error ?? 'Failed to load metadata');
         return null;
       }
-      const meta = await r.json();
 
       const name = meta.name ?? '—';
 
@@ -186,15 +181,6 @@
       res = await fetch('/view/image', { cache: 'no-store' });
     } catch {
       showError('Network error while loading image');
-      return false;
-    }
-
-    if (!res.ok) {
-      let msg = `Failed to load image (HTTP ${res.status})`;
-      try { const j = await res.clone().json(); if (j?.error) msg = j.error; } catch {
-        try { const t = await res.text(); if (t) msg = t; } catch { }
-      }
-      showError(msg);
       return false;
     }
 
@@ -262,14 +248,9 @@
     closing = true;
     try {
       const r = await fetch('/api/image', { method: 'DELETE', cache: 'no-store' });
-      if (!r.ok) {
-        try {
-          const j = await r.clone().json();
-          if (!j.success && j.error) showError(j.error);
-        } catch {
-          const t = await r.text();
-          if (t) showError(t); else showError(`Failed to close (HTTP ${r.status})`);
-        }
+      const json = await r.json();
+      if (!json || json.success !== true) {
+        showError(json?.error || 'Failed to close');
         closing = false;
         return;
       }
