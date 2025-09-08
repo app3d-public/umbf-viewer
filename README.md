@@ -13,8 +13,9 @@ It is designed as a companion tool for the UMBF ecosystem, allowing quick inspec
   - Fit to window  
 - Cross-platform (Windows, Linux)
 
+## Screenshots
 <details>
-  <summary>Screenshots</summary>
+  <summary>Click to expand</summary>
   <a href="/app3d/umbf-viewer/raw/branch/master/screenshots/loader.png">
     <img src="./screenshots/loader.png" alt="screenshot" width="350"/>
   </a>
