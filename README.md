@@ -16,10 +16,10 @@ It is designed as a companion tool for the UMBF ecosystem, allowing quick inspec
 ## Screenshots
 <details>
   <summary>Click to expand</summary>
-  <a href="/app3d-public/umbf-viewer/raw/branch/main/screenshots/loader.png">
+  <a href="https://github.com/app3d-public/umbf-viewer/blob/main/screenshots/loader.png">
     <img src="./screenshots/loader.png" alt="screenshot" width="350"/>
   </a>
-  <a href="/app3d-public/umbf-viewer/raw/branch/main/screenshots/view.png">
+  <a href="https://github.com/app3d-public/umbf-viewer/blob/main/screenshots/view.png">
     <img src="./screenshots/view.png" alt="screenshot" width="350"/>
   </a>
 </details>
@@ -37,8 +37,8 @@ It is designed as a companion tool for the UMBF ecosystem, allowing quick inspec
 ### Bundled submodules
 The following dependencies are included as git submodules and must be checked out when cloning:
 
-- [umbf](/app3d-public/umbf)
-- [alwf](/app3d-public/alwf)
+- [umbf](https://github.com/app3d-public/umbf)
+- [alwf](https://github.com/app3d-public/alwf)
 
 ## License
 This project is licensed under the [MIT License](LICENSE).
