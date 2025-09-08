@@ -13,6 +13,17 @@ It is designed as a companion tool for the UMBF ecosystem, allowing quick inspec
   - Fit to window  
 - Cross-platform (Windows, Linux)
 
+<details>
+  <summary>Screenshots</summary>
+  <a href="/app3d/umbf-viewer/raw/branch/master/screenshots/loader.png">
+    <img src="./screenshots/loader.png" alt="screenshot" width="350"/>
+  </a>
+  <a href="/app3d/umbf-viewer/raw/branch/master/screenshots/view.png">
+    <img src="./screenshots/view.png" alt="screenshot" width="350"/>
+  </a>
+</details>
+
+
 ## Building
 ### Supported compilers:
 - GNU GCC
@@ -25,8 +36,8 @@ It is designed as a companion tool for the UMBF ecosystem, allowing quick inspec
 ### Bundled submodules
 The following dependencies are included as git submodules and must be checked out when cloning:
 
-- [umbf](../umbf)
-- [alwf](../alwf)
+- [umbf](/app3d/umbf)
+- [alwf](/app3d/alwf)
 
 ## License
 This project is licensed under the [MIT License](LICENSE).
