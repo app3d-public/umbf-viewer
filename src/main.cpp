@@ -74,22 +74,19 @@ int main()
     umbf::streams::resolver = &meta_resolver;
 
     LoadCache loaded;
+    alwf::Router router;
 
-    acul::io::path current_path = acul::io::get_current_path();
-    alwf::env.static_folder = current_path / "public";
-    alwf::env.router.get["/"] = [](const alwf::Request &req) {
-        return acul::alloc<alwf::TextResponse>(ahtt::loader::render());
-    };
-    alwf::env.router.get["/view"] = [&](const alwf::Request &req) {
+    router.get["/"] = [](const alwf::Request &req) { return acul::alloc<alwf::TextResponse>(ahtt::loader::render()); };
+    router.get["/view"] = [&](const alwf::Request &req) {
         return acul::alloc<alwf::TextResponse>(ahtt::view::render());
     };
-    alwf::env.router.get["/view/image"] = [&](const alwf::Request &req) {
+    router.get["/view/image"] = [&](const alwf::Request &req) {
         acul::string err;
         assign_image_buffer(err, loaded);
         if (!err.empty())
         {
             LOG_ERROR("%s", err.c_str());
-            return acul::alloc<alwf::BinaryViewResponse>(500);
+            return acul::alloc<alwf::BinaryViewResponse>();
         }
         else
         {
@@ -98,7 +95,7 @@ int main()
         }
     };
 
-    alwf::env.router.get["/api/image"] = [&](const alwf::Request &req) {
+    router.get["/api/image"] = [&](const alwf::Request &req) {
         rapidjson::Document doc;
         doc.SetObject();
         auto &a = doc.GetAllocator();
@@ -111,7 +108,7 @@ int main()
             doc.AddMember("success", false, a);
             rapidjson::Value error(err.c_str(), a);
             doc.AddMember("error", error, a);
-            return acul::alloc<alwf::JSONResponse>(std::move(doc), 500);
+            return acul::alloc<alwf::JSONResponse>(std::move(doc));
         }
         else
         {
@@ -147,7 +144,7 @@ int main()
         }
     };
 
-    alwf::env.router.del["/api/image"] = [&](const alwf::Request &req) {
+    router.del["/api/image"] = [&](const alwf::Request &req) {
         loaded.name.clear();
         loaded.file.reset();
         loaded.image_block.reset();
@@ -155,7 +152,7 @@ int main()
         return acul::alloc<alwf::JSONResponse>("{\"success\": true}");
     };
 
-    alwf::env.router.post["/upload"] = [&](const alwf::Request &req) {
+    router.post["/upload"] = [&](const alwf::Request &req) {
         loaded.name = req.get_header(ACUL_C_STR("X-File-Name"));
         LOG_INFO("Loading image: %s", loaded.name.c_str());
         acul::bin_stream stream{req.body.data(), req.body.size()};
@@ -177,14 +174,18 @@ int main()
             doc.AddMember("success", false, a);
             rapidjson::Value error(err.c_str(), a);
             doc.AddMember("error", error, a);
-            return acul::alloc<alwf::JSONResponse>(std::move(doc), 500);
+            return acul::alloc<alwf::JSONResponse>(std::move(doc));
         }
     };
 
+    acul::io::path current_path = acul::io::get_current_path();
     alwf::Options opt;
     opt.title = "UMBF Image Viewer";
     opt.width = 800;
     opt.height = 600;
+    acul::string static_folder = current_path / "public";
+    opt.static_folder = static_folder.c_str();
+    opt.router = &router;
 
     alwf::init(opt);
     alwf::run();
