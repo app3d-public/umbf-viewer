@@ -4,7 +4,9 @@ project(umbf-viewer
     LANGUAGES CXX C
 )
 
-add_subdirectory(modules/umbf)
+set(APP_LIB_DIR ${CMAKE_CURRENT_SOURCE_DIR}/lib/${CMAKE_SYSTEM_NAME})
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${APP_LIB_DIR})
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${APP_LIB_DIR})
 
 set(ALWF_ROOT_DIR ${CMAKE_CURRENT_SOURCE_DIR}/modules/alwf)
 set(ALWF_PUBLIC_DIR ${CMAKE_CURRENT_SOURCE_DIR}/public)
@@ -14,4 +16,6 @@ set(ALWF_MANIFEST_DEPS libumbf:${UMBF_VERSION})
 set(ALWF_FRONTEND_DISABLE ON CACHE BOOL "Disable ALWF frontend installation")
 
 include(${ALWF_ROOT_DIR}/alwf.cmake)
+add_subdirectory(modules/umbf)
+
 target_link_libraries(${PROJECT_NAME} PRIVATE umbf)

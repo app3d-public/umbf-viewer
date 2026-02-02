@@ -1,4 +1,5 @@
-#include <acul/io/path.hpp>
+#include <acul/io/fs/path.hpp>
+#include <acul/log.hpp>
 #include <alwf/alwf.hpp>
 #include <rapidjson/stringbuffer.h>
 #include <rapidjson/writer.h>
@@ -178,7 +179,7 @@ int main()
         }
     };
 
-    acul::io::path current_path = acul::io::get_current_path();
+    acul::path current_path = acul::fs::get_current_path();
     alwf::Options opt;
     opt.title = "UMBF Image Viewer";
     opt.width = 800;
