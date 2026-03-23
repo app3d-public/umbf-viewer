@@ -156,7 +156,7 @@ int main()
     router.post["/upload"] = [&](const alwf::Request &req) {
         loaded.name = req.get_header(ACUL_C_STR("X-File-Name"));
         LOG_INFO("Loading image: %s", loaded.name.c_str());
-        acul::bin_stream stream{req.body.data(), req.body.size()};
+        acul::bin_stream stream{req.body.data(), static_cast<u32>(req.body.size())};
 
         rapidjson::Document doc;
         doc.SetObject();
