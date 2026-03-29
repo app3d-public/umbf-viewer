@@ -33,6 +33,8 @@
 *.app
 *.exe.*
 
+*.umlib
+
 lib
 build
 cache

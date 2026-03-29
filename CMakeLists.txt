@@ -16,6 +16,4 @@ set(ALWF_MANIFEST_DEPS libumbf:${UMBF_VERSION})
 set(ALWF_FRONTEND_DISABLE ON CACHE BOOL "Disable ALWF frontend installation")
 
 include(${ALWF_ROOT_DIR}/alwf.cmake)
-add_subdirectory(modules/umbf)
-
 target_link_libraries(${PROJECT_NAME} PRIVATE umbf)

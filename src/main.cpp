@@ -121,7 +121,7 @@ int main()
             doc.AddMember("vendor_version", loaded.file->header.vendor_version, a);
             doc.AddMember("type_sign", loaded.file->header.type_sign, a);
             doc.AddMember("spec_version", loaded.file->header.spec_version, a);
-            doc.AddMember("compressed", loaded.file->header.compressed, a);
+            doc.AddMember("flags", loaded.file->header.flags, a);
             doc.AddMember("checksum", loaded.file->checksum, a);
             doc.AddMember("width", loaded.image_block->width, a);
             doc.AddMember("height", loaded.image_block->height, a);
@@ -184,8 +184,8 @@ int main()
     opt.title = "UMBF Image Viewer";
     opt.width = 800;
     opt.height = 600;
-    acul::string static_folder = current_path / "public";
-    opt.static_folder = static_folder.c_str();
+    acul::string static_assets = current_path / ALWF_STATIC_ASSETS_NAME;
+    opt.static_assets = static_assets.c_str();
     opt.router = &router;
 
     alwf::init(opt);

@@ -1,6 +1,3 @@
 [submodule "modules/alwf"]
 	path = modules/alwf
 	url = ../alwf.git
-[submodule "modules/umbf"]
-	path = modules/umbf
-	url = ../umbf.git
