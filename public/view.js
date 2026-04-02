@@ -8,7 +8,7 @@
   const infoPath = document.getElementById('infoPath');
   const infoFormat = document.getElementById('infoFormat');
   const infoChannels = document.getElementById('infoChannels');
-  const infoCompression = document.getElementById('infoCompression');
+  const infoFlags = document.getElementById('infoFlags');
   const infoChecksum = document.getElementById('infoChecksum');
   const infoVendorSign = document.getElementById('infoVendorSign');
   const infoVendorVer = document.getElementById('infoVendorVersion');
@@ -138,9 +138,7 @@
       const typeSign = toHex(meta.type_sign);
       const specVersion = toHex(meta.spec_version);
 
-      const compressed = (typeof meta.compressed === 'boolean')
-        ? (meta.compressed ? 'Yes' : 'No')
-        : '—';
+      const flags = toHex(meta.flags);
 
       const checksum = meta.checksum ?? '—';
 
@@ -161,7 +159,7 @@
       infoHeight.textContent = height ? String(height) : '—';
       infoFormat.textContent = format;
       infoChannels.textContent = channels;
-      infoCompression.textContent = compressed;
+      infoFlags.textContent = flags;
       infoChecksum.textContent = checksum;
 
       if (!(width > 0 && height > 0)) {
@@ -270,3 +268,4 @@
     }
   });
 })();
+

@@ -66,8 +66,8 @@ html(lang="en")
             .k Channels
             .v#infoChannels —
           .row
-            .k Compression
-            .v#infoCompression —
+            .k Flags
+            .v#infoFlags —
           .row
             .k Checksum
             .v#infoChecksum —
